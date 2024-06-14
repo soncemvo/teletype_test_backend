@@ -4,5 +4,5 @@ namespace app\classes;
 
 interface LogWriter
 {
-    public function write($path, $text): void;
+    public function write(string $text): void;
 }

@@ -21,11 +21,13 @@ class MessageLogger
      */
     public string $operatorLogFile = "Operators.log";
 
-    public LogWriter $logWriter;
+    public LogWriter $clientLogWriter;
+    public LogWriter $operatorLogWriter;
 
     public function __construct()
     {
-        $this->logWriter = new FileLogWriter();
+        $this->clientLogWriter = new FileLogWriter($this->clientLogFile);
+        $this->operatorLogWriter = new FileLogWriter($this->operatorLogFile);
     }
 
     /**
@@ -38,7 +40,7 @@ class MessageLogger
         $date = date('H:i:s Y-m-d');
         $message = "[$date]  $payload->text\n";
 
-        $this->logWriter->write($this->clientLogFile, $message);
+        $this->clientLogWriter->write($message);
     }
 
     /**
@@ -51,7 +53,7 @@ class MessageLogger
         $date = date('H:i:s Y-m-d');
         $message = "[$date]  $payload->text\n";
 
-        $this->logWriter->write($this->operatorLogFile, $message);
+        $this->operatorLogWriter->write($message);
 
     }
 }

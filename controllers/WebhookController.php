@@ -65,7 +65,7 @@ class WebhookController extends Controller
                 }
                 catch (Exception $e)
                 {
-                    Yii::error("Sending http request with exception: " . $e->getMessage());
+                    Yii::error("Sending http request fails with exception: " . $e->getMessage());
                 }
 
             }
